@@ -1,4 +1,4 @@
-function findVerticalSeam(energy) {
+function findHorizontalSeam(energy) {
   const h = energy.length;
   const w = energy[0].length;
 
@@ -14,7 +14,7 @@ function findVerticalSeam(energy) {
       let minY = y;
       let minVal = dp[y][x-1];
 
-      if (dp[y - 1][x - 1] < minVal) {
+      if (y>0&&dp[y - 1][x - 1] < minVal) {
         minVal = dp[y - 1][x - 1];
         minY = y - 1;
       }
@@ -28,12 +28,10 @@ function findVerticalSeam(energy) {
     }
   }
 
-  let minY = 1;
-  for (let y = 2; y < h - 1; y++) {
-    if (dp[y][w-1] < dp[minY][w-1]) {
-      minY = y;
-    }
-  }
+  let minY = 0;
+for (let y = 1; y < h; y++) {
+  if (dp[y][w-1] < dp[minY][w-1]) minY = y;
+}
 
   const seam = Array(w);
   let y = minY;
