@@ -42,3 +42,39 @@ for (let y = 1; y < h; y++) {
 
   return seam;
 }
+function drawHorizontalSeam(seam) {
+  ctx.strokeStyle = "red";
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+
+  seam.forEach((x, y) => {
+    if (x === 0) {
+      ctx.moveTo(x, y);
+    } else {
+      ctx.lineTo(x, y);
+    }
+  });
+
+  ctx.stroke();
+}
+function removeHorizontalSeam(imageData, seam, w, h) {
+  const newData = new ImageData(w, h - 1);
+  const src = imageData.data;
+  const dst = newData.data;
+    for (let x = 0; x < w; x++) {
+      let ny = 0;
+      for (let y = 0; y < h; y++) {
+      if (y !== seam[x]) {
+        const si = (y * w + x) * 4;     
+        const di = (ny * w + x) * 4;    
+        dst[di]     = src[si];
+        dst[di + 1] = src[si + 1];
+        dst[di + 2] = src[si + 2];
+        dst[di + 3] = src[si + 3];
+        ny++;
+      }
+    }
+  }
+
+  return newData;
+}

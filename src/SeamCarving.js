@@ -113,7 +113,7 @@ function removeVerticalSeam(imageData, seam, w, h) {
 
   return newData;
 }
-function removeMultipleSeams(ctx, canvas, count, delay = 30) {
+function removeMultipleSeams(ctx, canvas, count, delay = 30, verital) {
   if (count <= 0){ 
   document.getElementById("removeSeam").disabled = false;
     return;
@@ -126,11 +126,19 @@ function removeMultipleSeams(ctx, canvas, count, delay = 30) {
   const seam = findVerticalSeam(energy, w, h);
 
   ctx.putImageData(imgData, 0, 0);
+  if(verital){
   drawSeam(seam);
+  }else{
+    drawHorizontalSeam(seam);
+  }
   drawPreview();
 
   setTimeout(() => {
+    if(verital){
     const newData = removeVerticalSeam(imgData, seam, w, h);
+    }else{
+      const newData = removeHorizontalSeam(imgData, seam, w, h);
+    }
     canvas.width = w - 1;
     ctx.putImageData(newData, 0, 0);
     console.log(pokazowycanvas.width);
@@ -141,6 +149,9 @@ removeMultipleSeams(ctx, canvas, count - 1, delay);
 }
 document.getElementById("removeSeam").onclick = () => {
   document.getElementById("removeSeam").disabled = true;
-  removeMultipleSeams(ctx, canvas,Math.round((100-widthRange.value)/100*canvas.width));
-
+  removeMultipleSeams(ctx, canvas,Math.round((100-widthRange.value)/100*canvas.width),true);
+};
+document.getElementById("removeHorizontalSeam").onclick = () => {
+  document.getElementById("removeHorizontalSeam").disabled = true;
+  removeMultipleSeams(ctx, canvas,Math.round((100-widthRange.value)/100*canvas.width),false);
 };
