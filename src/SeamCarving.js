@@ -27,6 +27,7 @@ function energyMap(imageData, w, h) {
   }
   return energy;
 }
+
 function findVerticalSeam(energy) {
   const h = energy.length;
   const w = energy[0].length;
