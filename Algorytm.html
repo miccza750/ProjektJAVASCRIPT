@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seam carving - Algorytm</title>
+    <meta name="description"
+        content="Działanie algorytmu, programowanie dynamiczne.">
+    <meta name="author" content="Michał Czachor">
+    <link rel="stylesheet" href="src/style.css">
+     <link rel="stylesheet" href="src/styleAlgorytm.css">
+      <link rel="icon" type="image/x-icon" href="src/logo.png">
+</head>
+<body>
+  <!-- NAGŁOWEK -->
+   <header>
+      <div class="header-left">
+      <img src="src/logo.png" alt="logo strony" id="logo">
+   <a href="index.html"><h1>Seam Carving – Inteligentne skalowanie obrazu</h1></a>
+    </div>
+    <nav>
+      <ul>
+          <li><a href="SeamCarving.html">Program</a></li>
+        <li><a href="Algorytm.html">O Algorytmie</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- KONIEC NAGŁOWKA -->
+   <!-- GŁÓWNA SEKCJA -->
+ <main>
+    <section class="section-left">
+      <article>
+    <h2>1. Rozpoczęcie od obrazu wejściowego</h2>
+    <p>
+        Proces Seam Carving rozpoczyna się od obrazu wejściowego,
+        który użytkownik chce przeskalować. Jest to oryginalne zdjęcie,
+        bez żadnych modyfikacji, stanowiące punkt wyjścia dla całego algorytmu.
+    </p>
+      </article>
+      <aside class="image-hover image-hover-right">
+  <img src="https://user-images.githubusercontent.com/883386/35481925-de130752-0435-11e8-9246-3950679b4fd6.jpg" alt="Obraz nr.1">
+      </aside>
+    </section>
+      <section class="section-right">
+ <article>
+    <h2>2. Obliczenie energii pikseli</h2>
+    <p>
+    Następnie dla każdego piksela obrazu obliczana jest jego energia,
+    określająca znaczenie wizualne danego miejsca.
+    Istnieje wiele metod wyznaczania energii, takich jak entropia,
+    analiza uwagi wzrokowej czy saliencja wizualna.
+    W praktyce bardzo często stosuje się gradient jasności,
+    który dobrze wykrywa krawędzie i istotne struktury obrazu.
+    </p>
+  </article>
+        <aside class="image-hover image-hover-left">
+  <img src="https://user-images.githubusercontent.com/883386/35481899-5d5096ca-0435-11e8-9f9b-a84fefc06470.jpg" alt="Obraz nr.2">
+      </aside>
+    </section>
+      <section class="section-left">
+<article>
+            <h2>3. Wyznaczanie ścieżek</h2>
+            <p>
+            Na podstawie mapy energii algorytm wyznacza tzw. seams,
+            czyli ciągłe ścieżki pikseli przechodzące przez cały obraz.
+            Każda ścieżka otrzymuje wartość energii będącą sumą energii jej pikseli.
+            Seams o najniższej energii uznawane są za najmniej istotne dla zawartości obrazu.
+            </p>
+  </article>
+        <aside class="image-hover image-hover-right">
+  <img src="https://user-images.githubusercontent.com/883386/35481949-5c74dcb0-0436-11e8-97db-a6169cb150ca.jpg" alt="Obraz nr.3">
+      </aside>
+    </section>
+      <section class="section-right">
+<article>
+            <h2>4. Usuwanie najmniej istotnych seams</h2>
+            <p>
+            Kolejnym krokiem jest usunięcie ścieżek o najniższej energii.
+            Proces ten może być powtarzany wielokrotnie, w zależności od tego,
+            jak bardzo obraz ma zostać zmniejszony lub rozszerzony. Usuwanie seams pozwala zmieniać rozmiar obrazu bez zniekształcania kluczowych obiektów.
+            </p>
+        </article>
+        <aside class="image-hover image-hover-left image-hover-square">
+  <img src="https://user-images.githubusercontent.com/883386/35498110-a4a03328-04d5-11e8-9bf1-f526ef033d6a.jpg" alt="Obraz nr.4">
+      </aside>
+    </section>
+    <section class="section-left">
+        <article>
+            <h2>5. Obraz końcowy</h2>
+            <p>
+            Po usunięciu odpowiedniej liczby ścieżek otrzymujemy obraz końcowy.
+            Zachowuje on najważniejsze elementy wizualne,
+            a jego proporcje są dostosowane do nowych wymagań.
+            Dzięki temu Seam Carving umożliwia inteligentne
+            skalowanie obrazów bez utraty ich czytelności i jakości.
+            </p>
+        </article>
+         <aside class="image-hover image-hover-right image-hover-square">
+  <img src="https://user-images.githubusercontent.com/883386/35498110-a4a03328-04d5-11e8-9bf1-f526ef033d6a.jpg" alt="Obraz nr.5">
+      </aside>
+    </section>
+    <section class="section-right">
+        <article>
+            <h2>Działanie algorytmu - programowanie dynamiczne</h2>
+            <p>
+            Programowanie dynamiczne to technika algorytmiczna
+            polegająca na zapamiętywaniu wyników częściowych obliczeń
+            w celu efektywnego rozwiązywania bardziej złożonych problemów.
+            W algorytmie Seam Carving metoda ta służy do wyznaczania ścieżek
+            (seams) o najmniejszej energii,
+            które mogą zostać usunięte lub dodane bez istotnej utraty jakości obrazu.
+            Dla każdego piksela obliczana jest skumulowana energia,
+            będąca sumą jego własnej energii oraz minimalnej energii
+            jednego z trzech sąsiadujących pikseli z poprzedniego wiersza.
+            W ten sposób tworzona jest mapa kosztów przejścia przez obraz,
+            a najniższa wartość w ostatnim wierszu wskazuje optymalny seam.
+            </p>
+        </article>
+    </section>
+  </main>
+     <!-- KONIEC GŁÓWNEJ SEKCJI -->
+   <footer>
+    <p>&copy; 2026 Michał Czachor Informatyka i Ekonomia 2 rok 135042<br>Seam Carving</p>
+  </footer>
+</body>
+</html>

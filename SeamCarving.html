@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seam carving - Program</title>
+    <meta name="description"
+        content="Program - sam szkielet">
+    <meta name="author" content="Michał Czachor">
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="src/styleSeamCarving.css">
+      <link rel="icon" type="image/x-icon" href="src/logo.png">
+</head>
+<body>
+  <!-- NAGŁOWEK -->
+    <header>
+      <div class="header-left">
+      <img src="src/logo.png" alt="logo strony" id="logo">
+   <a href="index.html"><h1>Seam Carving – Inteligentne skalowanie obrazu</h1></a>
+    </div>
+    <nav>
+      <ul>
+          <li><a href="SeamCarving.html">Program</a></li>
+        <li><a href="Algorytm.html">O Algorytmie</a></li>
+      </ul>
+    </nav>
+  </header>
+   <!-- KONIEC NAGŁOWKA -->
+     <!-- GŁÓWNA SEKCJA -->
+ <main>
+    <h2>Mini Edytor Obrazka</h2>
+<div class="main-form">
+   
+<form class="editor-form">
+  <label for="fileInput" class="main-button">
+    Wczytaj obraz
+  </label>
+  <input type="file" id="fileInput" accept="image/*" hidden>
+
+<div class="resize-editor">
+  <label for="widthRange">Szerokość obrazu:</label>
+  <input type="range" id="widthRange" min="0" max="100" value="400">
+</div>
+  <button type="button" class="main-button" id="removeSeam">
+    Utnij
+  </button>
+  <button type="button" id="pobierzbutton" class="main-button">
+    pobierz
+  </button>
+</form>
+<div class="main-image">
+  <canvas id="canvas"></canvas>
+  <div id="previewContainer">
+  <canvas id="pokazowycanvas"></canvas> 
+  <div id="overlay"></div>
+  </div>
+</div>
+</div>
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const pokazowycanvas = document.getElementById("pokazowycanvas");
+const pokazowyctx = pokazowycanvas.getContext("2d");
+const widthRange = document.getElementById("widthRange");
+const overlay = document.getElementById("overlay");
+const previewContainer = document.getElementById("previewContainer");
+function drawPreview() {
+const previewH = pokazowycanvas.clientHeight;
+
+  const scale = previewH / canvas.height;
+  const drawW = canvas.width * scale;
+  const drawH = previewH;
+
+  pokazowycanvas.width = drawW;
+  pokazowycanvas.height = drawH;
+
+  pokazowyctx.clearRect(0, 0, drawW, drawH);
+
+  pokazowyctx.drawImage(canvas, 0, 0, drawW, drawH);
+}
+document.getElementById("fileInput").addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const img = new Image();
+  img.src = URL.createObjectURL(file);
+  img.onload = () => {
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0);
+      drawPreview();
+  };
+});
+widthRange.addEventListener("input", () => {
+  const procent = widthRange.value;
+  const canvasRect = pokazowycanvas.getBoundingClientRect();
+  const containerRect = pokazowycanvas.parentElement.getBoundingClientRect();
+  const canvasWidth = canvasRect.width;
+  const overlayWidth = Math.round(canvasWidth * ((100 - procent) / 100));
+  const offsetLeft = canvasRect.left - containerRect.left;
+  overlay.style.width = overlayWidth + "px";
+  overlay.style.left = offsetLeft + canvasWidth - overlayWidth + "px";
+});
+
+</script>
+<script src="src/SeamCarving.js"></script>
+<script src="src/zapisObrazka.js"></script>
+  </main>
+   <footer>
+    <p>&copy; 2026 Michał Czachor Informatyka i Ekonomia 2 rok 135042<br>Seam Carving</p>
+  </footer>
+</body>
+</html>

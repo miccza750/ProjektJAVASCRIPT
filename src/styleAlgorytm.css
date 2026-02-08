@@ -1,0 +1,53 @@
+section {
+  display: flex; 
+  justify-content: center;
+  position: relative;
+  max-width: 100%;
+    width: 90%;
+}
+article{
+    width: 70%;
+}
+.image-hover-right, .image-hover-left{
+    width: 300px;
+}
+.image-hover-right{
+    right: 0%; 
+}
+.image-hover-left{
+    left: 0%; 
+}
+@media (max-width: 1150px) {
+ section {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    position: relative;     
+    width: 90%;
+    max-width: 1200px;
+}
+  .image-hover-right,
+  .image-hover-left {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    left: 0;
+    right: 0;
+    aspect-ratio: 16 / 9;  
+    display: flex;
+    padding: 0 
+
+  }
+  .image-hover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    left: 0;
+   right: 0;
+  }
+
+  .image-hover.image-hover-square {
+    aspect-ratio: 1 / 1;
+    max-width: 250px;
+  }
+}

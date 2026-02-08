@@ -1,0 +1,145 @@
+#canvas{ display:none; }
+.main-form{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 500px;
+  padding: 0;
+  justify-content: flex-start;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  gap: 10px;
+}
+.main-form form{
+    display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+main{
+    display: flex;
+    flex-wrap: wrap;
+}
+main h1{
+    padding: 0;
+    margin: 0;
+}
+#fileInput{
+    position: absolute;
+}
+.main-button {
+  margin: 15px;
+    width: 250px;
+  display: flex;
+  padding: 20px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #0059ff, #3b7bff);
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0, 89, 255, 0.35);
+  text-align: center;
+  align-items: center;
+}
+.main-button img{
+    width: 80px;
+    height: 80px;
+}
+.main-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 89, 255, 0.5);
+  background: linear-gradient(135deg, #003bb3, #0059ff);
+}
+.main-button:active {
+  box-shadow: 0 8px 25px rgba(0, 89, 255, 0.3);
+}
+.main-image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 500px;
+  background: #b3baff;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  gap: 10px;
+}
+.resize-editor{
+padding-left: 15px;
+color: #0059ff;
+font-weight: 700;
+}
+#widthRange {
+  -webkit-appearance: none;
+  width: 80%;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #0059ff, #3b7bff);
+  outline: none;
+  cursor: pointer;
+}
+#widthRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #0059ff;
+  cursor: pointer;
+}
+#overlay{
+  position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+}
+#previewContainer {
+    position: relative;
+    display: block;
+    width: 100%;  
+    max-width: 100%; 
+    overflow: hidden;
+    margin: 0 auto;
+    justify-content: center;
+}
+#pokazowycanvas{
+height: 400px;
+  width: auto;
+  display:block;
+  margin:0 auto;
+}
+@media (max-width: 1150px) {
+ .main-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction:column;
+  height: 800px;
+  text-align: center;
+ }
+ .main-button-back{
+    display: none;
+}
+.main-button{
+  margin-left: auto;
+  margin-right: auto;
+}
+#pokazowycanvas{
+height: 300px;
+}
+}
+@media (max-width: 450px) {
+  main{
+    text-align: center;
+  }
+   .main-button{
+    width: 66%;
+   }
+   #pokazowycanvas{
+height: 200px;
+}
+}
